@@ -2,20 +2,26 @@ using UnityEngine;
 
 public class Click : MonoBehaviour
 {
-    GameObject GameControl;
+    private GameObject GameControl;
+    private Game gameScript;
 
     void Start()
     {
         GameControl = GameObject.Find("GameControl");
+
+        if (GameControl != null)
+        {
+            gameScript = GameControl.GetComponent<Game>();
+        }
     }
 
     private void OnMouseDown()
     {
-        if (GameControl.GetComponent<Game>().moves[int.Parse(name)] == 0)
+        if (gameScript != null)
         {
-            GameControl.GetComponent<Game>().b = int.Parse(name);
-            GameControl.GetComponent<Game>().Move();
-            GameControl.GetComponent<Game>().time_for_reflection = Random.Range(1f, 3f);
+            int index = int.Parse(name);
+            
+            gameScript.Move(index);
         }
     }
 }
