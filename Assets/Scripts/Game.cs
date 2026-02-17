@@ -40,6 +40,9 @@ public class Game : MonoBehaviour
     
     private bool isCrossTurn;
 
+    [Header("Контроллер UI")]
+    [SerializeField] private CanvasController canvasController;
+
     void Start()
     {
         currentTime = timeLimit;
@@ -133,6 +136,7 @@ public class Game : MonoBehaviour
         else if (steps == 9 && !redline.activeSelf)
         {
             RedactText("\nНИЧЬЯ!");
+            canvasController.ShowDraw();
         }
     }
 
@@ -172,6 +176,16 @@ public class Game : MonoBehaviour
         steps = 10;
         line = isCrossTurn ? redline : blueline;
         RedactText(isCrossTurn ? "КРЕСТИКИ ПОБЕДИЛИ!" : "НОЛИКИ ПОБЕДИЛИ!");
+
+        if (isCrossTurn)
+        {
+           canvasController.ShowWinPlayer2();
+        }
+        else
+        {
+            canvasController.ShowWinPlayer1();
+        }
+
         line.SetActive(true);
         switch (numVariant)
         {

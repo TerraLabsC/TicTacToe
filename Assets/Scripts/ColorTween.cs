@@ -13,12 +13,22 @@ public class ColorTween : MonoBehaviour
 
     private Color _originalColor;
 
+    [SerializeField] private bool isActive = false;
+
     private void Awake()
     {
         if (_graphic == null)
             _graphic = GetComponent<Graphic>();
 
         _originalColor = _graphic.color;
+    }
+
+    void Start()
+    {
+        if (isActive)
+        {
+            ChangeColor();
+        }
     }
 
     public void ChangeColor()
