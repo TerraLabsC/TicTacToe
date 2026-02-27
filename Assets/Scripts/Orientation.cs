@@ -22,12 +22,14 @@ public class Orientation : MonoBehaviour
         if (Screen.width > Screen.height)
         {
             _camera.orthographicSize = 5.5f;
+
             CanvasHorizontal.enabled = true;
             CanvasVertical.enabled = false;
         }
         else
         {
             _camera.orthographicSize = 10f;
+
             CanvasHorizontal.enabled = false;
             CanvasVertical.enabled = true;
         }
